@@ -18,7 +18,7 @@ const SearchResults = () => {
     const fetchSearchResults = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:5000/api/services/search', {
+        const response = await axios.get('https://themabinti-main-d4az.onrender.com/api/services/search', {
           params: { query },
         });
 
