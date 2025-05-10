@@ -41,7 +41,7 @@ const ContactUsPage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const apiUrl = 'http://localhost:5000/api/contact';
+      const apiUrl = 'https://themabinti-main-d4az.onrender.com/api/contact';
       console.log('Submitting form to:', apiUrl, 'with values:', values);
       await axios.post(apiUrl, values);
       toast.success('Message sent successfully! We\'ll get back to you soon.');
