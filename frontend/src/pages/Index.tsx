@@ -22,7 +22,7 @@ const Index = () => {
         const categoriesWithServices = await Promise.all(
           serviceCategories.map(async (category) => {
             try {
-              const response = await axios.get(`http://localhost:5000/api/services/${category.id}`);
+              const response = await axios.get(`https://themabinti-main-d4az.onrender.com/api/services/${category.id}`);
               const services = response.data.map((service: any) => ({
                 id: service._id,
                 name: service.name,
