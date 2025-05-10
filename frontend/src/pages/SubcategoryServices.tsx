@@ -18,7 +18,7 @@ const SubcategoryServices = () => {
     const fetchServicesBySubcategory = async () => {
       try {
         setLoading(true);
-        const apiUrl = 'http://localhost:5000/api/subcategory';
+        const apiUrl = 'https://themabinti-main-d4az.onrender.com/api/subcategory';
         console.log('Fetching from:', apiUrl, 'with subcategory:', subcategoryPath);
         const response = await axios.get(apiUrl, {
           params: { subcategory: subcategoryPath },
