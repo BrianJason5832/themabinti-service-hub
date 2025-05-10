@@ -18,7 +18,7 @@ const LocationServices = () => {
     const fetchServicesByLocation = async () => {
       try {
         setLoading(true);
-        const apiUrl = 'http://localhost:5000/api/services';
+        const apiUrl = 'https://themabinti-main-d4az.onrender.com/api/services';
         console.log('Fetching from:', apiUrl, 'with location:', decodedLocation);
         const response = await axios.get(apiUrl, {
           params: { location: decodedLocation },
