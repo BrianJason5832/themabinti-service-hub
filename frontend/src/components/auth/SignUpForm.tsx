@@ -83,7 +83,7 @@ const SignUpForm = () => {
       console.log('Sending register request:', userData); // Debug log
 
       // Send POST request to backend
-      const response = await axios.post('http://localhost:5000/api/register', userData);
+      const response = await axios.post('https://themabinti-main-d4az.onrender.com/api/register', userData);
       
       // Store token and user data
       localStorage.setItem('token', response.data.token);
