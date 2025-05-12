@@ -1,12 +1,15 @@
-
 import { useState, useEffect } from 'react';
-import { Search, User, ChevronDown, Menu, X } from 'lucide-react';
+import { Search, User, ChevronDown, Menu, X, ChevronRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger 
+  DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+  DropdownMenuPortal
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -14,6 +17,7 @@ import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import { useIsMobile } from "@/hooks/use-mobile";
 import LocationSelector from './LocationSelector';
 import BookAppointmentButton from './BookAppointmentButton';
+import { serviceCategories } from '@/data/serviceCategories';
 
 const NavbarTop = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -124,13 +128,36 @@ const NavbarTop = () => {
                   
                   {/* Mobile Navigation Links */}
                   <nav className="flex flex-col space-y-4 mb-6">
-                    <Link 
-                      to="/all-services" 
-                      className="text-gray-800 font-medium hover:text-purple-500"
-                      onClick={() => setIsDrawerOpen(false)}
-                    >
-                      Find Services
-                    </Link>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="flex items-center justify-between w-full text-gray-800 font-medium hover:text-purple-500">
+                        Find Services
+                        <ChevronRight className="h-4 w-4" />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-56" align="start" sideOffset={5}>
+                        {serviceCategories.map((category) => (
+                          <DropdownMenuSub key={category.id}>
+                            <DropdownMenuSubTrigger className="text-gray-800">
+                              {category.title}
+                            </DropdownMenuSubTrigger>
+                            <DropdownMenuPortal>
+                              <DropdownMenuSubContent className="w-56">
+                                {category.links.map((link) => (
+                                  <DropdownMenuItem key={link.path} asChild>
+                                    <Link
+                                      to={link.path}
+                                      className="cursor-pointer"
+                                      onClick={() => setIsDrawerOpen(false)}
+                                    >
+                                      {link.title}
+                                    </Link>
+                                  </DropdownMenuItem>
+                                ))}
+                              </DropdownMenuSubContent>
+                            </DropdownMenuPortal>
+                          </DropdownMenuSub>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                     <Link 
                       to="/blogs" 
                       className="text-gray-800 font-medium hover:text-purple-500"
